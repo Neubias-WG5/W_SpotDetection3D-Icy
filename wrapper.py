@@ -24,8 +24,8 @@ def main():
         # Modify the parameters in the job.xml file 
         replaceScaleParameterCommand = "sed -i '/scale/c\\t<parameter name=\"scale\">{}</parameter>' job.xml".format(scale)
         replaceSensitivityParameterCommand = "sed -i '/sensitivity/c\\t<parameter name=\"sensitivity\">{}</parameter>' job.xml".format(sensitivity)
-        replaceInputFolderParameterCommand = "sed -i '/inputFolder/c\\t<parameter name=\"inputFolder\">{}</parameter>' job.xml".format(in_path)
-        replaceOutputFolderParameterCommand = "sed -i '/outputFolder/c\\t<parameter name=\"outputFolder\">{}</parameter>' job.xml".format(out_path)
+        replaceInputFolderParameterCommand = "sed -i '/inputFolder/c\\t<parameter name=\"inputFolder\">{}</parameter>' job.xml".format('"'+in_path+'"')
+        replaceOutputFolderParameterCommand = "sed -i '/outputFolder/c\\t<parameter name=\"outputFolder\">{}</parameter>' job.xml".format('"'+out_path+'"')
         call(replaceScaleParameterCommand, shell=True, cwd="/icy")
         call(replaceSensitivityParameterCommand, shell=True, cwd="/icy")
         call(replaceInputFolderParameterCommand, shell=True, cwd="/icy")
@@ -33,7 +33,7 @@ def main():
 
         # Run script in ICY
 
-        command = "java -jar --headless --execute plugins.volker.commandlinescriptrunner.CommandLineScriptRunner "
+        command = "java -jar icy.jar --headless --execute plugins.volker.commandlinescriptrunner.CommandLineScriptRunner"
         call(command, shell=True, cwd="/icy")
 
         # 4. Upload the annotation and labels to Cytomine

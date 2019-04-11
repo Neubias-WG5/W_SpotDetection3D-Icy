@@ -1,5 +1,5 @@
 <job title='Spot Detection 3D' type='script'>
-    <path>./scripts/IcySpotDetection3D.js</path>
+    <path>./scripts/script.js</path>
     <parameter-list>
         <parameter name="scale">2</parameter>
         <parameter name="sensitivity">50</parameter>
