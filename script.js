@@ -55,7 +55,7 @@ for (k = 0; k < files.length; k++) {
 	// get the number of detection
 	detectionSize = detectionResult.size();
 
-	boxSize = scale;
+	boxSize = 0;
 
 
 	// Display on source sequence
@@ -71,7 +71,7 @@ for (k = 0; k < files.length; k++) {
 		// display where the detection has been found.
 		// create a ROI
 		roi2d = new ROI2DRectangle(
-		new Point2D.Double(x - boxSize, y - boxSize), new Point2D.Double(x + boxSize + 1, y + boxSize + 1), false); // false: say to the system that the ROI is not in creation mode.
+		new Point2D.Double(x - boxSize, y - boxSize), new Point2D.Double(x + boxSize , y + boxSize ), false); // false: say to the system that the ROI is not in creation mode.
 		roi = new ROI3DStackRectangle(roi2d.getRectangle(), z - boxSize, z + boxSize); // false: say to the system that the ROI is not in creation mode.
 		sequence.addROI(roi); // add the ROI to the sequence
 	}
@@ -88,8 +88,8 @@ for (k = 0; k < files.length; k++) {
 		roi = rois.get(i);
 		// get data iterator over the ROI region
 		dataIterator = new SequenceDataIterator(sequence, roi, true);
-		// set current ROI index value + 1 as label
-		DataIteratorUtil.set(dataIterator, i + 1);
+		// set current ROI to 255
+		DataIteratorUtil.set(dataIterator, 255);
 	}
 
 	// we changed the image (data iterator do not notify sequence about it)
