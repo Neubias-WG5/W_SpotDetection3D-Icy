@@ -16,7 +16,7 @@ RUN rm -r /Cytomine-python-client
 RUN apt-get update && apt-get install -y unzip wget && \
     mkdir -p /icy && \
     cd /icy && \
-    wget -O icy.zip http://www.icy.bioimageanalysis.org/downloadIcy/icy_1.9.9.1.zip && \
+    wget -O icy.zip https://github.com/Neubias-WG5/W_SpotDetection-Icy/raw/master/icy_1.9.9.1_with_plugins.zip && \
     unzip icy.zip && \
     rm -rf icy.zip
 
