@@ -4,7 +4,7 @@ from cytomine.models import *
 from subprocess import call
 from pathlib import Path
 from neubiaswg5 import CLASS_SPTCNT
-from neubiaswg5.helpers import prepare_data, NeubiasJob, upload_data, upload_metrics
+from neubiaswg5.helpers import get_discipline, prepare_data, NeubiasJob, upload_data, upload_metrics
 
 def main():
     with NeubiasJob.from_cli(sys.argv[1:]) as nj:
@@ -12,7 +12,7 @@ def main():
 
         # 1. Create working directories on the machine:
         # 2. Download (or read) data
-        problem_cls = CLASS_SPTCNT
+        problem_cls = get_discipline(nj, default=CLASS_SPTCNT)
         is_2d = False
         in_images, gt_images, in_path, gt_path, out_path, tmp_path = prepare_data(problem_cls, nj, is_2d=False, **nj.flags)
 
