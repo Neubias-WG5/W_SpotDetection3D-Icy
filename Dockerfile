@@ -1,6 +1,6 @@
 FROM python:3.6.9-stretch
 
-RUN apt-get install libgeos-dev
+RUN apt-get update && apt-get install libgeos-dev -y && apt-get clean
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Java
