@@ -44,7 +44,7 @@ RUN  cd /icy && java -jar icy.jar -hl -x plugins.ferreol.icyhlplugininstaller.Ic
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Neubias-W5-Utilities (annotation exporter, compute metrics, helpers,...)
 RUN git clone https://github.com/Neubias-WG5/neubiaswg5-utilities.git && \
-    cd /neubiaswg5-utilities/ && git checkout tags/v0.7.0 && pip install .
+    cd /neubiaswg5-utilities/ && git checkout tags/v0.8.1 && pip install .
 
 # install utilities binaries
 RUN chmod +x /neubiaswg5-utilities/bin/*
