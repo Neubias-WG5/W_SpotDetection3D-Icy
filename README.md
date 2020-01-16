@@ -1,2 +1,2 @@
 # W_SpotDetection3D-Icy
-3D spot-detection with Icy 
+Spot detection in 3D images by Wavelet Adaptive Threshold.
