@@ -76,7 +76,7 @@
             "name": "Sensitivity",
             "description": "The lower, the more stringent",
             "type": "Number",
-            "default-value": 50,
+            "default-value": 70,
             "optional": true,
 	    "set-by-server": false
         }
