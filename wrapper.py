@@ -3,11 +3,11 @@ import sys
 from cytomine.models import *
 from subprocess import call
 from pathlib import Path
-from neubiaswg5 import CLASS_SPTCNT
-from neubiaswg5.helpers import get_discipline, prepare_data, NeubiasJob, upload_data, upload_metrics
+from biaflows import CLASS_SPTCNT
+from biaflows.helpers import get_discipline, prepare_data, BiaflowsJob, upload_data, upload_metrics
 
 def main():
-    with NeubiasJob.from_cli(sys.argv[1:]) as nj:
+    with BiaflowsJob.from_cli(sys.argv[1:]) as nj:
         nj.job.update(status=Job.RUNNING, progress=0, statusComment="Initialisation...")
 
         # 1. Create working directories on the machine:
