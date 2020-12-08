@@ -1,7 +1,5 @@
 FROM python:3.6.9-stretch
 
-RUN apt-get update && apt-get install libgeos-dev -y && apt-get clean
-
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Java
 RUN apt-get update && apt-get install openjdk-8-jdk -y && apt-get clean
@@ -9,7 +7,7 @@ RUN apt-get update && apt-get install openjdk-8-jdk -y && apt-get clean
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Cytomine python client
 RUN git clone https://github.com/cytomine-uliege/Cytomine-python-client.git && \
-    cd /Cytomine-python-client && git checkout tags/v2.3.0.poc.1 && pip install . && \
+    cd /Cytomine-python-client && git checkout tags/v2.7.3 && pip install . && \
     rm -r /Cytomine-python-client
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -43,20 +41,16 @@ RUN cd /icy && mv IcyHLPluginInstaller-jar/IcyHLPluginInstaller.jar /icy/plugins
 RUN  cd /icy && java -jar icy.jar -hl -x plugins.ferreol.icyhlplugininstaller.IcyHLPluginInstaller plugins.volker.commandlinescriptrunner.CommandLineScriptRunner
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Neubias-W5-Utilities (annotation exporter, compute metrics, helpers,...)
-RUN git clone https://github.com/Neubias-WG5/neubiaswg5-utilities.git && \
-    cd /neubiaswg5-utilities/ && git checkout tags/v0.8.1 && pip install .
+RUN apt-get update && apt-get install libgeos-dev -y && apt-get clean
+RUN git clone https://github.com/Neubias-WG5/biaflows-utilities.git && \
+    cd /biaflows-utilities/ && git checkout tags/v0.9.1 && pip install .
 
 # install utilities binaries
-RUN chmod +x /neubiaswg5-utilities/bin/*
-RUN cp /neubiaswg5-utilities/bin/* /usr/bin/
+RUN chmod +x /biaflows-utilities/bin/*
+RUN cp /biaflows-utilities/bin/* /usr/bin/
 
 # cleaning
-RUN rm -r /neubiaswg5-utilities
-
-# custom version of imagecodecs to make sure tifffile can read icy-generated images
-RUN pip install numpy==1.13.0
-RUN pip install Cython==0.29.6
-RUN pip install imagecodecs-lite==2019.2.22 
+RUN rm -r /biaflows-utilities
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Script
